@@ -1,7 +1,7 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'coffeTypes' })
-export class coffeTypes {
+@Entity({ name: 'favorites' })
+export class favorites {
   @PrimaryGeneratedColumn({ type: 'bigint' })
   id: string;
 

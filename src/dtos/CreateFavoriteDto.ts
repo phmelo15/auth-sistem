@@ -1,6 +1,6 @@
 import { IsBoolean, IsNumber, IsString } from 'class-validator';
 
-export class CreateCafeDto {
+export class CreateFavoriteDto {
   @IsString()
   name: string;
 

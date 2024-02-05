@@ -13,6 +13,7 @@ import { UsersService } from './users/users.service';
 // import { CoffeTypesModule } from './coffe-types/coffe-types.module';
 import { CoffeModule } from './coffe/coffe.module';
 import { coffeTypes } from './typeorm/entities/coffeTypes';
+import { FavoritesModule } from './favorites/favorites.module';
 
 @Module({
   imports: [
@@ -25,11 +26,12 @@ import { coffeTypes } from './typeorm/entities/coffeTypes';
       password: 'MyElterasu@3030',
       database: 'authSystemData',
       entities: [User, Profile, coffeTypes],
-      synchronize: true,
+      synchronize: false,
     }),
     UsersModule,
     AuthModule,
     CoffeModule,
+    FavoritesModule,
   ],
   controllers: [AppController, AuthController],
   providers: [AppService, AuthService],

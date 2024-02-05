@@ -16,3 +16,25 @@ export type UpdateUserProfileParams = {
   age: number;
   dob: string;
 };
+
+export type FavoriteDetailsParams = {
+  name: string;
+  description: string;
+  price: string;
+  ingredients: string;
+  preparationTime: number;
+  image: string;
+  type: string;
+  available: boolean;
+};
+
+export type CoffeDetailsParams = {
+  name: string;
+  description: string;
+  price: string;
+  ingredients: string;
+  preparationTime: number;
+  image: string;
+  type: string;
+  available: boolean;
+};

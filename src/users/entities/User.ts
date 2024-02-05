@@ -7,6 +7,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Profile } from './Profile';
+import { favorites } from 'src/typeorm/entities/favorites';
 
 @Entity({ name: 'users' })
 export class User {
@@ -28,4 +29,8 @@ export class User {
   @OneToOne(() => Profile)
   @JoinColumn()
   profile: Profile;
+
+  @OneToOne(() => favorites)
+  @JoinColumn()
+  favorites: favorites;
 }
