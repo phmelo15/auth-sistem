@@ -12,9 +12,18 @@ export class CoffeTypesService {
     private CoffeTypeRepository: Repository<coffeTypes>,
   ) {}
 
-  async getAllCafes() {
-    const cafes = this.CoffeTypeRepository.find();
-    return cafes;
+  async getAllCafes(favoriteIds?: number[]) {
+    //  let cafes: coffeTypes[];
+
+    let coffes: coffeTypes[] = await this.CoffeTypeRepository.find();
+
+    if (favoriteIds && favoriteIds.length > 0) {
+      // cafes = await this.CoffeTypeRepository.find({ where: {id: {in: favoriteIds}}})
+      coffes = coffes.filter((cafe) => favoriteIds.includes(cafe.id));
+      return coffes;
+    } else {
+      return coffes;
+    }
   }
 
   async createCafe(coffeDetails: CoffeDetailsParams) {

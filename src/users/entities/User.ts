@@ -30,7 +30,6 @@ export class User {
   @JoinColumn()
   profile: Profile;
 
-  @OneToOne(() => favorites)
-  @JoinColumn()
-  favorites: favorites;
+  // @JoinColumn()
+  // favorites: favorites;
 }

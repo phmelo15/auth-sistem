@@ -14,10 +14,11 @@ import { UsersService } from './users/users.service';
 import { CoffeModule } from './coffe/coffe.module';
 import { coffeTypes } from './typeorm/entities/coffeTypes';
 import { FavoritesModule } from './favorites/favorites.module';
+import { favorites } from './typeorm/entities/favorites';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([User, Profile, coffeTypes]),
+    TypeOrmModule.forFeature([User, Profile, coffeTypes, favorites]),
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
@@ -25,7 +26,7 @@ import { FavoritesModule } from './favorites/favorites.module';
       username: 'root',
       password: 'MyElterasu@3030',
       database: 'authSystemData',
-      entities: [User, Profile, coffeTypes],
+      entities: [User, Profile, coffeTypes, favorites],
       synchronize: false,
     }),
     UsersModule,

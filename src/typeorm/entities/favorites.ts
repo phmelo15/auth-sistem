@@ -1,31 +1,17 @@
-import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { User } from 'src/users/entities/User';
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity({ name: 'favorites' })
 export class favorites {
   @PrimaryGeneratedColumn({ type: 'bigint' })
-  id: string;
+  id: number;
 
   @Column()
-  name: string;
-
-  @Column()
-  description: string;
-
-  @Column()
-  price: string;
-
-  @Column()
-  ingredients: string;
-
-  @Column()
-  preparationTime: number;
-
-  @Column()
-  image: string;
-
-  @Column()
-  type: string;
-
-  @Column({ default: false })
-  available: boolean;
+  coffeId: string;
 }

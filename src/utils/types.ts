@@ -1,3 +1,5 @@
+import { User } from 'src/users/entities/User';
+
 export type createUserParams = {
   username: string;
   password: string;
@@ -26,6 +28,19 @@ export type FavoriteDetailsParams = {
   image: string;
   type: string;
   available: boolean;
+  isFavorite: boolean;
+};
+
+export type FavoriteDetailsUpdateParams = {
+  name: string;
+  description: string;
+  price: string;
+  ingredients: string;
+  preparationTime: number;
+  image: string;
+  type: string;
+  available: boolean;
+  isFavorite: boolean;
 };
 
 export type CoffeDetailsParams = {
@@ -37,4 +52,5 @@ export type CoffeDetailsParams = {
   image: string;
   type: string;
   available: boolean;
+  isFavorite: boolean;
 };

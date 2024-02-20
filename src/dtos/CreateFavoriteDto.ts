@@ -24,4 +24,7 @@ export class CreateFavoriteDto {
 
   @IsBoolean()
   available: boolean;
+
+  @IsBoolean()
+  isFavorite: boolean;
 }
