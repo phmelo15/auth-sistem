@@ -4,6 +4,9 @@ import { User } from './entities/User';
 import { Repository } from 'typeorm';
 import { createUserParams } from 'src/utils/types';
 import { JwtService } from '@nestjs/jwt';
+import { encodedPassword } from 'src/utils/bcrypt';
+import { CreateUserDto } from 'src/dtos/CreateUserDto';
+import { CreateUserProfileDto } from 'src/dtos/CreateUserProfileDto';
 
 @Injectable()
 export class UsersService {
@@ -32,8 +35,11 @@ export class UsersService {
   }
 
   async createUser(userDetails: createUserParams) {
+    const password = encodedPassword(userDetails.password);
+    console.log(password);
     const user = await this.userRepository.create({
       ...userDetails,
+      password,
       createdAt: new Date(),
     });
 

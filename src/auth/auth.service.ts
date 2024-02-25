@@ -14,6 +14,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { User } from 'src/users/entities/User';
 import { Repository } from 'typeorm';
 import { Profile } from 'src/users/entities/Profile';
+import { comparePass } from 'src/utils/bcrypt';
 
 @Injectable()
 export class AuthService {
@@ -25,7 +26,8 @@ export class AuthService {
   ) {}
   async signIn(username: string, pass: string): Promise<any> {
     const user = await this.usersService.findOne(username);
-    if (user?.password !== pass) {
+    const matchedPass = comparePass(pass, user?.password);
+    if (!matchedPass) {
       throw new UnauthorizedException();
     }
 
