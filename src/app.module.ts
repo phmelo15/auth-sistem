@@ -15,10 +15,12 @@ import { CoffeModule } from './coffe/coffe.module';
 import { coffeTypes } from './typeorm/entities/coffeTypes';
 import { FavoritesModule } from './favorites/favorites.module';
 import { favorites } from './typeorm/entities/favorites';
+import { CartModule } from './cart/cart.module';
+import { cart } from './typeorm/entities/cart';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([User, Profile, coffeTypes, favorites]),
+    TypeOrmModule.forFeature([User, Profile, coffeTypes, favorites, cart]),
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
@@ -26,13 +28,14 @@ import { favorites } from './typeorm/entities/favorites';
       username: 'root',
       password: 'MyElterasu@3030',
       database: 'authSystemData',
-      entities: [User, Profile, coffeTypes, favorites],
+      entities: [User, Profile, coffeTypes, favorites, cart],
       synchronize: false,
     }),
     UsersModule,
     AuthModule,
     CoffeModule,
     FavoritesModule,
+    CartModule,
   ],
   controllers: [AppController, AuthController],
   providers: [AppService, AuthService],

@@ -36,7 +36,6 @@ export class UsersService {
 
   async createUser(userDetails: createUserParams) {
     const password = encodedPassword(userDetails.password);
-    console.log(password);
     const user = await this.userRepository.create({
       ...userDetails,
       password,
@@ -50,8 +49,6 @@ export class UsersService {
     }
 
     const payload = { sub: user?.id, username: user?.username };
-
-    console.log(user?.id, user?.username);
 
     return {
       acess_token: await this.jwtService.signAsync(payload),
