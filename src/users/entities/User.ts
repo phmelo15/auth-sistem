@@ -8,6 +8,7 @@ import {
 } from 'typeorm';
 import { Profile } from './Profile';
 import { favorites } from 'src/typeorm/entities/favorites';
+import { cart } from 'src/typeorm/entities/cart';
 
 @Entity({ name: 'users' })
 export class User {
@@ -30,6 +31,9 @@ export class User {
   @JoinColumn()
   profile: Profile;
 
-  // @JoinColumn()
-  // favorites: favorites;
+  @OneToMany(() => favorites, (Favorites) => Favorites.user)
+  Favorites: favorites;
+
+  @OneToMany(() => cart, (cart) => cart.User)
+  Cart: cart;
 }

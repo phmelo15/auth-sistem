@@ -39,11 +39,12 @@ export class AuthController {
 
   @UseGuards(AuthGuard)
   @Delete(':id')
-  async DeleteUser(@Param() id: string) {
+  async DeleteUser(@Param('id') id: string) {
     const response = await this.usersService.deleteUser(id);
     return response;
   }
 
+  @UseGuards(AuthGuard)
   @Post(':id/profiles')
   createUserProfile(
     @Param('id', ParseIntPipe) id: number,
@@ -51,7 +52,7 @@ export class AuthController {
   ) {
     return this.authService.createUserProfile(id, createUserProfileDto);
   }
-
+  @UseGuards(AuthGuard)
   @Put(':id/profiles')
   updateUserProfile(
     @Param('id', ParseIntPipe) id: number,
@@ -59,7 +60,7 @@ export class AuthController {
   ) {
     return this.authService.updateUserProfile(id, updateUserProfileDto);
   }
-
+  @UseGuards(AuthGuard)
   @Get(':id/profiles')
   getUserProfile(@Param('id', ParseIntPipe) id: number) {
     return this.authService.getUserProfile(id);

@@ -15,6 +15,7 @@ import { User } from 'src/users/entities/User';
 import { Repository } from 'typeorm';
 import { Profile } from 'src/users/entities/Profile';
 import { comparePass } from 'src/utils/bcrypt';
+import { jwtConstants } from './constants';
 
 @Injectable()
 export class AuthService {
@@ -26,7 +27,7 @@ export class AuthService {
   ) {}
   async signIn(username: string, pass: string): Promise<any> {
     const user = await this.usersService.findOne(username);
-    const matchedPass = comparePass(pass, user?.password);
+    const matchedPass = await comparePass(pass, user?.password);
     if (!matchedPass) {
       throw new UnauthorizedException();
     }
@@ -34,7 +35,9 @@ export class AuthService {
     const payload = { sub: user?.id, username: user?.username };
 
     return {
-      acess_token: await this.jwtService.signAsync(payload),
+      acess_token: await this.jwtService.signAsync(payload, {
+        secret: jwtConstants.secret,
+      }),
       id: user?.id,
     };
   }
